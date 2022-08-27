@@ -1,5 +1,10 @@
 if(game.GetMap() ~= "gm_what_destiny_intended") then return end
 
+--This is supposed to delete all the environments from gm_what_destiny_intended because there are too many, CAF causes lag because of how many there are
+
+--This doesn't actually work properly when you first start the map, you have to run it after Life Support gets enabled from CAF
+--Also disabling CAF Life Support doesn't stop things from having no gravity >:(
+
 local function DelEnv()
     for k, e in ipairs(ents.FindByClass("logic_case")) do
         if(e:GetName() ~= "sgc_alarm_case") then --dont delete the logic_case that controls the sgc lockdown
