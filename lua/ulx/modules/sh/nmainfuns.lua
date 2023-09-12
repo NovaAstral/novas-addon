@@ -19,5 +19,5 @@ local enablefire = ulx.command(category, "ulx enablefire", function(ply)
 	ulx.fancyLogAdmin(ply, "#A Enabled Fire.")
 end, {"!enablefire", "!yesfire"}, true)
 
-disablefire:defaultAccess(ULib.ACCESS_SUPERADMIN)
-disablefire:help("Enables all Fire")
+enablefire:defaultAccess(ULib.ACCESS_SUPERADMIN)
+enablefire:help("Enables all Fire")
