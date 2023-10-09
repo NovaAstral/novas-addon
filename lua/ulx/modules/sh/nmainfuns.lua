@@ -1,4 +1,4 @@
-local category = "nmain"
+local category = "NovaCore"
 
 local disablefire = ulx.command(category, "ulx disablefire", function(ply)
 	if SERVER then
