@@ -46,11 +46,11 @@ end
 hook.Add("Initialize", "DelEnv on Mapstart", function()
     timer.Create("DelEnv Wait",120,1,function()
         DelEnv()
-        DelEnv() --run twice because it doesnt work properly if I dont and im too lazy to fix it
+        DelEnv() --run twice because it doesnt work properly if I dont and I don't know how to fix it
     end)
 end)
 
 hook.Add("PostCleanupMap","CleanupReset",function()
     DelEnv()
-    DelEnv() --run twice because it doesnt work properly if I dont and im too lazy to fix it
+    DelEnv() --run twice because it doesnt work properly if I dont and I don't know how to fix it
 end)
