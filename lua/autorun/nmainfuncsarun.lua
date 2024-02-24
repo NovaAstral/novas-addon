@@ -58,7 +58,14 @@ if(SERVER) then
         end
     end)
 end
-
+/*
+hook.Add("PostCleanupMap","CleanupReset",function()
+    local ents = ents.GetAll()
+    for I = 1,#ents do
+        print(ents[I])
+    end
+end)
+*/
 if(CLIENT) then
     hook.Add("OnPlayerChat","NVCmdHide",function(ply,text)
         if(string.StartWith(text,"/")) then
