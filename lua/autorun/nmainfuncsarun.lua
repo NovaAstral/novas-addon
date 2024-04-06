@@ -20,41 +20,43 @@ if(SERVER) then
     end)--]]
 
     hook.Add("PlayerSay","EntCount",function(ply,text)
-        if(string.StartWith(string.lower(text),"/entcount")) then
-            print("entcount")
-            if(!ply:IsAdmin()) then return end
+        if(!ply:IsAdmin()) then return end
 
-            local ents = ents.GetAll()
-            
-            for I = 1,#ents.GetAll() do
-                if I == #ents.GetAll() then
-                    ply:ChatPrint("Entity Amount: "..#ents.GetAll())
+        local SE = string.Explode(" ",text)
+
+        if(SE[1] == "/n") then
+            if(SE[2] == "count") then
+                if(SE[3] == "ents" or SE[3] == "ent") then
+                    local ents = ents.GetAll()
+                    
+                    ply:ChatPrint("Entity Amount: "..#ents)
                 end
-            end
 
-            
-        end
+                if(SE[3] == "props" or SE[3] == "prop") then
+                    local ents = ents.FindByClass("prop_physics")
 
-        if(string.StartWith(string.lower(text),"/propcount")) then
-            if(!ply:IsAdmin()) then return end
-
-            local ents = ents.FindByClass("prop_physics")
-            
-            for I = 1,#ents do
-                if I == #ents then
                     ply:ChatPrint("Prop Amount: "..#ents)
                 end
             end
-        end
 
-        if(string.StartWith(string.lower(text),"/uptime")) then
-            if(!ply:IsAdmin()) then return end
+            if(SE[2] == "uptime") then
+                if(!ply:IsAdmin()) then return end
 
-            local secs = math.Round(CurTime(),0)
-            local mins = math.Round(secs / 60,0)
-            local hrs = math.Round(mins / 60,2)
+                local secs = math.Round(CurTime(),0)
+                local mins = math.Round(secs / 60,0)
+                local hrs = math.Round(mins / 60,2)
 
-            ply:ChatPrint("Server uptime is: "..secs.." Seconds, or "..mins.." Minutes, or "..hrs.." Hours.")
+                ply:ChatPrint("Server uptime is: "..secs.." Seconds, or "..mins.." Minutes, or "..hrs.." Hours.")
+            end
+
+            if(SE[2] == "setmodel") then
+                if(!util.IsValidModel(SE[3])) then
+                    ply:ChatPrint(SE[3].." Is not a valid model!")
+                else
+                    ply:SetModel(SE[3])
+                    ply:ChatPrint("Model set to: "..SE[3])
+                end
+            end
         end
     end)
 end
